@@ -1,0 +1,3 @@
+SELECT scheduled_departure, departure_airport FROM bookings.flights 
+WHERE (aircraft_code = $$SU9$$) AND ((departure_airport = $$ROV$$) OR (departure_airport = $$VKO$$))
+ORDER BY scheduled_departure LIMIT 300

@@ -1,0 +1,7 @@
+
+WITH Departure_time as (SELECT scheduled_departure, departure_airport FROM bookings.flights)
+SELECT scheduled_departure FROM Departure_time WHERE Departure_time.departure_airport IN  (SELECT airport_code FROM bookings.airports_data
+																						 WHERE city = $${
+  "en": "Moscow",
+  "ru": "Москва"
+}$$) ORDER BY scheduled_departure ASC LIMIT 500;

@@ -1,0 +1,5 @@
+WITH Boarding_table AS (SELECT flight_id, COUNT(flight_id) AS Boarding from bookings.boarding_passes GROUP BY flight_id)
+SELECT Tickets.flight_id, Tickets.Booking, Boarding_table.Boarding from Boarding_table 
+INNER JOIN (SELECT COUNT(flight_id) AS Booking, flight_id from bookings.ticket_flights GROUP BY bookings.ticket_flights.flight_id)
+AS Tickets
+ON Tickets.flight_id  = Boarding_table.flight_id  GROUP BY Tickets.flight_id, Tickets.Booking, Boarding_table.Boarding Order BY flight_id;

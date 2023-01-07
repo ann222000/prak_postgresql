@@ -1,0 +1,6 @@
+WITH Arrive_ROV as (SELECT ticket_no from (SELECT * from bookings.flights
+											 WHERE arrival_airport = $$ROV$$) AS Flight INNER JOIN bookings.ticket_flights
+					USING(flight_id))
+SELECT passenger_id, passenger_name, contact_data from 
+					(SELECT * from Arrive_ROV INNER JOIN bookings.tickets
+													  USING(ticket_no)) AS Tick_no  Order by passenger_name LIMIT 100

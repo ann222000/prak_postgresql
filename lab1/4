@@ -1,0 +1,5 @@
+SELECT flight_id, passenger_name, contact_data, boarding_no, seat_no FROM bookings.boarding_passes INER JOIN
+(SELECT passenger_name, contact_data, ticket_no FROM bookings.tickets
+WHERE passenger_name = $$NINA BELOVA$$) AS Passenger
+USING (ticket_no) GROUP BY flight_id, passenger_name, contact_data, boarding_no, seat_no
+ORDER BY flight_id;
